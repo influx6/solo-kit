@@ -3,8 +3,9 @@ package setup
 import (
 	"context"
 	"fmt"
-	"github.com/gorilla/websocket"
 	"net/http"
+
+	"github.com/gorilla/websocket"
 
 	"github.com/solo-io/solo-kit/pkg/utils/contextutils"
 

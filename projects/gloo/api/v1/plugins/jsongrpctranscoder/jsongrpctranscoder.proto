@@ -1,0 +1,14 @@
+syntax = "proto3";
+package jsongrpctranscoder.plugins.gloo.solo.io;
+
+option go_package = "github.com/solo-io/solo-kit/projects/gloo/pkg/api/v1/plugins/jsongrpctranscoder";
+
+import "google/protobuf/duration.proto";
+
+import "validate/validate.proto";
+import "gogoproto/gogo.proto";
+
+message JsonGrpcTranscoder {
+    // Supplies the binary content of the proto descriptor set for the gRPC services.
+    bytes proto_descriptor_bin = 1;
+}
