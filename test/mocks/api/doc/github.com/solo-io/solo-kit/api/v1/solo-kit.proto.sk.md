@@ -4,7 +4,8 @@
 ##### Types:
 
 
-- [Resource](#Resource)
+- [ResourceOptions](#ResourceOptions)
+- [CrdOptions](#CrdOptions)
   
 
 
@@ -16,13 +17,31 @@
 
 
 ---
-### <a name="Resource">Resource</a>
+### <a name="ResourceOptions">ResourceOptions</a>
+
+
+
+```yaml
+"crd": .core.solo.io.CrdOptions
+
+```
+
+| Field | Type | Description | Default |
+| ----- | ---- | ----------- |----------- | 
+| `crd` | [.core.solo.io.CrdOptions](solo-kit.proto.sk.md#CrdOptions) | options for the kubernetes CRD based on this message |  |
+
+
+
+
+---
+### <a name="CrdOptions">CrdOptions</a>
 
 
 
 ```yaml
 "short_name": string
 "plural_name": string
+"cluster_scoped": bool
 
 ```
 
@@ -30,6 +49,7 @@
 | ----- | ---- | ----------- |----------- | 
 | `short_name` | `string` | becomes the kubernetes short name for the generated crd |  |
 | `plural_name` | `string` | becomes the kubernetes plural name for the generated crd |  |
+| `cluster_scoped` | `bool` | becomes the resource scope in kubernetes, e.g. cluster or namespaced |  |
 
 
 

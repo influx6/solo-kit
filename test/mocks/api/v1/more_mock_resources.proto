@@ -15,12 +15,29 @@ import "github.com/solo-io/solo-kit/api/v1/solo-kit.proto";
 Description of the AnotherMockResource
 */
 message AnotherMockResource {
-    option (core.solo.io.resource).short_name = "amr";
-    option (core.solo.io.resource).plural_name = "anothermockresources";
+    option (core.solo.io.resource).crd.short_name = "amr";
+    option (core.solo.io.resource).crd.plural_name = "anothermockresources";
+    option (core.solo.io.resource).crd.cluster_scoped = false;
+
     core.solo.io.Metadata metadata = 1 [(gogoproto.nullable) = false];
     core.solo.io.Status status = 6 [(gogoproto.nullable) = false];
 
     // comments that go above the basic field in our docs
+    string basic_field = 2;
+
+}
+/*
+ClusterScopedResource tests Cluster-Level Scoping of CRDs
+*/
+message ClusterScopedResource {
+    option (core.solo.io.resource).crd.short_name = "csr";
+    option (core.solo.io.resource).crd.plural_name = "ClusterScopedResource";
+    option (core.solo.io.resource).crd.cluster_scoped = true;
+
+    core.solo.io.Metadata metadata = 1 [(gogoproto.nullable) = false];
+    core.solo.io.Status status = 6 [(gogoproto.nullable) = false];
+
+    // arbitrary data for testing
     string basic_field = 2;
 
 }

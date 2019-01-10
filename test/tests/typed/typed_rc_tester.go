@@ -5,6 +5,8 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/solo-io/solo-kit/pkg/api/v1/clients/kube"
+
 	"github.com/hashicorp/consul/api"
 	vaultapi "github.com/hashicorp/vault/api"
 	. "github.com/onsi/gomega"
@@ -61,8 +63,9 @@ func (rct *KubeRcTester) Setup(namespace string) factory.ResourceClientFactory {
 	cfg, err := clientcmd.BuildConfigFromFlags("", kubeconfigPath)
 	Expect(err).NotTo(HaveOccurred())
 	return &factory.KubeResourceClientFactory{
-		Crd: rct.Crd,
-		Cfg: cfg,
+		Crd:         rct.Crd,
+		Cfg:         cfg,
+		SharedCache: kube.NewKubeCache(),
 	}
 }
 

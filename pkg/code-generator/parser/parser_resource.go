@@ -161,7 +161,10 @@ func describeResource(messageWrapper ProtoMessageWrapper) (*model.Resource, erro
 	comments := strings.Split(msg.GetComments().Leading, "\n")
 
 	name := msg.GetName()
-	var shortName, pluralName string
+	var (
+		shortName, pluralName string
+		clusterScoped         bool
+	)
 	resourceOpts, err := proto.GetExtension(msg.Options, core.E_Resource)
 	if err != nil {
 		log.Warnf("failed to get solo-kit message options for resource %v: %v", msg.GetName(), err)
@@ -178,12 +181,15 @@ func describeResource(messageWrapper ProtoMessageWrapper) (*model.Resource, erro
 		}
 		pluralName = pn
 	} else {
-		res, ok := resourceOpts.(*core.Resource)
+		res, ok := resourceOpts.(*core.ResourceOptions)
 		if !ok {
 			return nil, errors.Errorf("internal error: message options were not type *core.Resource: %+v", resourceOpts)
 		}
-		shortName = res.ShortName
-		pluralName = res.PluralName
+		if res.Crd != nil {
+			shortName = res.Crd.ShortName
+			pluralName = res.Crd.PluralName
+			clusterScoped = res.Crd.ClusterScoped
+		}
 	}
 
 	// always make it upper camel
@@ -195,15 +201,16 @@ func describeResource(messageWrapper ProtoMessageWrapper) (*model.Resource, erro
 	oneofs := collectOneofs(msg)
 
 	return &model.Resource{
-		Name:         name,
-		ProtoPackage: msg.GetPackage(),
-		GoPackage:    messageWrapper.GoPackage,
-		ShortName:    shortName,
-		PluralName:   pluralName,
-		HasStatus:    hasStatus,
-		Fields:       fields,
-		Oneofs:       oneofs,
-		Filename:     msg.GetFile().GetName(),
-		Original:     msg,
+		Name:          name,
+		ProtoPackage:  msg.GetPackage(),
+		GoPackage:     messageWrapper.GoPackage,
+		ShortName:     shortName,
+		PluralName:    pluralName,
+		ClusterScoped: clusterScoped,
+		HasStatus:     hasStatus,
+		Fields:        fields,
+		Oneofs:        oneofs,
+		Filename:      msg.GetFile().GetName(),
+		Original:      msg,
 	}, nil
 }

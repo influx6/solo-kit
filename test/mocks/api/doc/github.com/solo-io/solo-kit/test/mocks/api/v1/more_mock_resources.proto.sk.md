@@ -5,6 +5,7 @@
 
 
 - [AnotherMockResource](#AnotherMockResource)** Top-Level Resource**
+- [ClusterScopedResource](#ClusterScopedResource)** Top-Level Resource**
   
 
 
@@ -33,6 +34,28 @@ Description of the AnotherMockResource
 | `metadata` | [.core.solo.io.Metadata](../../../../api/v1/metadata.proto.sk.md#Metadata) |  |  |
 | `status` | [.core.solo.io.Status](../../../../api/v1/status.proto.sk.md#Status) |  |  |
 | `basic_field` | `string` | comments that go above the basic field in our docs |  |
+
+
+
+
+---
+### <a name="ClusterScopedResource">ClusterScopedResource</a>
+
+ 
+ClusterScopedResource tests Cluster-Level Scoping of CRDs
+
+```yaml
+"metadata": .core.solo.io.Metadata
+"status": .core.solo.io.Status
+"basic_field": string
+
+```
+
+| Field | Type | Description | Default |
+| ----- | ---- | ----------- |----------- | 
+| `metadata` | [.core.solo.io.Metadata](../../../../api/v1/metadata.proto.sk.md#Metadata) |  |  |
+| `status` | [.core.solo.io.Status](../../../../api/v1/status.proto.sk.md#Status) |  |  |
+| `basic_field` | `string` | arbitrary data for testing |  |
 
 
 

@@ -19,6 +19,7 @@ message Metadata {
     string name = 2;
 
     // Namespace is used for the namespacing of resources.
+    // Note: if the resource is cluster-scoped, namespace will be ignored
     string namespace = 3;
 
     // An opaque value that represents the internal version of this object that can

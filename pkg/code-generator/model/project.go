@@ -46,9 +46,11 @@ type Project struct {
 }
 
 type Resource struct {
-	Name         string
-	PluralName   string
-	ShortName    string
+	Name          string
+	PluralName    string // maps to kubernetes crd plural name. only required if using kube crd client
+	ShortName     string // maps to kubernetes crd short name. only required if using kube crd client
+	ClusterScoped bool   // if true, kubernetes crd scope set to Cluster. only required if using kube crd client
+
 	ProtoPackage string // eg. gloo.solo.io
 	// ImportPrefix will equal ProtoPackage+"." if the resource does not belong to the project
 	// else it will be empty string. used in event loop files
