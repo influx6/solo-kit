@@ -58,7 +58,7 @@ func (m *MockResource) Reset()         { *m = MockResource{} }
 func (m *MockResource) String() string { return proto.CompactTextString(m) }
 func (*MockResource) ProtoMessage()    {}
 func (*MockResource) Descriptor() ([]byte, []int) {
-	return fileDescriptor_mock_resources_d7c973d5bbb5ae4c, []int{0}
+	return fileDescriptor_mock_resources_38845227714df6d7, []int{0}
 }
 func (m *MockResource) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_MockResource.Unmarshal(m, b)
@@ -227,7 +227,7 @@ func (m *FakeResource) Reset()         { *m = FakeResource{} }
 func (m *FakeResource) String() string { return proto.CompactTextString(m) }
 func (*FakeResource) ProtoMessage()    {}
 func (*FakeResource) Descriptor() ([]byte, []int) {
-	return fileDescriptor_mock_resources_d7c973d5bbb5ae4c, []int{1}
+	return fileDescriptor_mock_resources_38845227714df6d7, []int{1}
 }
 func (m *FakeResource) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_FakeResource.Unmarshal(m, b)
@@ -276,7 +276,7 @@ func (m *MockXdsResourceConfig) Reset()         { *m = MockXdsResourceConfig{} }
 func (m *MockXdsResourceConfig) String() string { return proto.CompactTextString(m) }
 func (*MockXdsResourceConfig) ProtoMessage()    {}
 func (*MockXdsResourceConfig) Descriptor() ([]byte, []int) {
-	return fileDescriptor_mock_resources_d7c973d5bbb5ae4c, []int{2}
+	return fileDescriptor_mock_resources_38845227714df6d7, []int{2}
 }
 func (m *MockXdsResourceConfig) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_MockXdsResourceConfig.Unmarshal(m, b)
@@ -663,10 +663,10 @@ var _MockXdsResourceDiscoveryService_serviceDesc = grpc.ServiceDesc{
 }
 
 func init() {
-	proto.RegisterFile("github.com/solo-io/solo-kit/test/mocks/api/v1/mock_resources.proto", fileDescriptor_mock_resources_d7c973d5bbb5ae4c)
+	proto.RegisterFile("github.com/solo-io/solo-kit/test/mocks/api/v1/mock_resources.proto", fileDescriptor_mock_resources_38845227714df6d7)
 }
 
-var fileDescriptor_mock_resources_d7c973d5bbb5ae4c = []byte{
+var fileDescriptor_mock_resources_38845227714df6d7 = []byte{
 	// 558 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x54, 0x41, 0x6f, 0xd3, 0x4c,
 	0x10, 0xad, 0xd3, 0x7c, 0xf9, 0x92, 0xa5, 0x51, 0x85, 0x09, 0x55, 0x14, 0x4a, 0x13, 0x05, 0x09,

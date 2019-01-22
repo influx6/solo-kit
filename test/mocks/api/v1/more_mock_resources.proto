@@ -10,6 +10,8 @@ import "github.com/solo-io/solo-kit/api/v1/metadata.proto";
 import "github.com/solo-io/solo-kit/api/v1/status.proto";
 import "github.com/solo-io/solo-kit/api/v1/solo-kit.proto";
 
+import "envoy/api/v2/discovery.proto";
+import "google/api/annotations.proto";
 
 /*
 Description of the AnotherMockResource
@@ -21,6 +23,7 @@ message AnotherMockResource {
     core.solo.io.Status status = 6 [(gogoproto.nullable) = false];
 
     // comments that go above the basic field in our docs
+
     string basic_field = 2;
 
 }
@@ -35,4 +38,34 @@ message ClusterResource {
     // comments that go above the basic field in our docs
     string basic_field = 2;
 
+}
+
+
+/*
+@solo-kit:xds-service=ExampleXDSService
+@solo-kit:resource.no_references
+ */
+message ExampleXDSResource {
+    // @solo-kit:resource.name
+    string favorite_meme = 1;
+}
+
+
+/*
+@solo-kit:resource.xds-enabled
+*/
+service ExampleXDSService {
+    rpc StreamExampleXDSResource(stream envoy.api.v2.DiscoveryRequest)
+    returns (stream envoy.api.v2.DiscoveryResponse) {}
+
+    rpc IncrementalExampleXDSResource(stream envoy.api.v2.IncrementalDiscoveryRequest)
+    returns (stream envoy.api.v2.IncrementalDiscoveryResponse) {}
+
+    rpc FetchExampleXDSResource(envoy.api.v2.DiscoveryRequest)
+    returns (envoy.api.v2.DiscoveryResponse) {
+        option (google.api.http) = {
+      post : "/v2/discovery:ExampleXDSServiceResource"
+      body : "*"
+    };
+    }
 }
